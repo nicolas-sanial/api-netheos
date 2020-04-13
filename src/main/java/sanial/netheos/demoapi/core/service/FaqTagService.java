@@ -1,0 +1,10 @@
+package sanial.netheos.demoapi.core.service;
+
+import sanial.netheos.demoapi.core.model.FaqTag;
+
+import java.util.List;
+
+public interface FaqTagService {
+
+    List<FaqTag> findAllFaqTag();
+}
