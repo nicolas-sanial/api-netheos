@@ -1,5 +1,7 @@
 package sanial.netheos.demoapi.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,14 +19,24 @@ public class Faq {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "question", nullable = false)
+    @Column(name = "question", nullable = false, unique = true)
     private String question;
 
-    @Column(name = "answer", nullable = false)
+    @Column(name = "answer", nullable = false, unique = true)
     private String answer;
 
-    @OneToMany(mappedBy = "faq", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "faq", cascade = CascadeType.ALL)
     List<FaqTag> faqTagList;
+
+    /* Default constructor */
+    public Faq(){
+
+    }
+
+    public Faq(String question, String answer){
+        this.question = question;
+        this.answer= answer;
+    }
 
     public int getId() {
         return id;
@@ -50,6 +62,7 @@ public class Faq {
         this.answer = answer;
     }
 
+    @JsonIgnore
     public List<FaqTag> getFaqTagList() {
         return faqTagList;
     }

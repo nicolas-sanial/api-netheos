@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import sanial.netheos.demoapi.core.model.Faq;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FaqRepository extends JpaRepository<Faq, Integer> {
@@ -20,5 +21,7 @@ public interface FaqRepository extends JpaRepository<Faq, Integer> {
     @Query("from Faq where question like '%:toCompare%' and answer like '%:toCompare%'")
     List<Faq> findAllLikeQuestionOrAnswer(@Param("toCompare") String toCompare);
 
+    Optional<Faq> findByQuestion(String question);
 
+    Optional<Faq> findByAnswer(String answer);
 }

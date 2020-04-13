@@ -17,6 +17,10 @@ public class FaqController {
     @Autowired
     FaqService faqService;
 
+    /**
+     * US 2 : This controller is used to get all FAQ entities -> question/answers
+     * @return All defined FAQ in DB
+     */
     @GetMapping(value = "/faq", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Faq> getAllFaq(){
         return faqService.findAllFaq();
