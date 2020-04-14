@@ -6,6 +6,7 @@ import sanial.netheos.demoapi.core.model.Faq;
 import sanial.netheos.demoapi.core.repository.FaqRepository;
 import sanial.netheos.demoapi.core.service.FaqService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,5 +18,14 @@ public class FaqServiceImpl implements FaqService {
     @Override
     public List<Faq> findAllFaq(){
         return faqRepository.findAll();
+    }
+
+    public List<String> findAllLikeQuestionOrAnswer(String toCompare){
+        List<String> answerList = new ArrayList<>();
+        List<Faq> listFaq = faqRepository.findAllLikeQuestionOrAnswer(toCompare);
+        listFaq.forEach(faq -> {
+            answerList.add(faq.getAnswer());
+        });
+        return answerList;
     }
 }

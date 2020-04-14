@@ -12,6 +12,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/faqtag/create").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/faq/search").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/faq").permitAll()
                 .anyRequest().authenticated();
     }

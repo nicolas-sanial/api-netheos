@@ -7,4 +7,6 @@ import java.util.List;
 public interface FaqService {
 
     List<Faq> findAllFaq();
+
+    List<String> findAllLikeQuestionOrAnswer(String toCompare);
 }

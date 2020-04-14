@@ -13,12 +13,12 @@ import java.util.Optional;
 public interface FaqRepository extends JpaRepository<Faq, Integer> {
 
     /**
-     * Catch all Faq object where the searched String in contained in question or answer attribute.
+     * Catch all Faq object where the searched String is contained in question or answer attribute.
      * Using like %% break the table index, maybe better to use Elasticsearch in this case, depending on DB volume.
      * @param toCompare the string that have to be searched in question or answers
      * @return the list of faq that contain the string in parameter
      */
-    @Query("from Faq where question like '%:toCompare%' and answer like '%:toCompare%'")
+    @Query("from Faq where answer like CONCAT('%',:toCompare,'%') or question like CONCAT('%',:toCompare,'%')")
     List<Faq> findAllLikeQuestionOrAnswer(@Param("toCompare") String toCompare);
 
     Optional<Faq> findByQuestion(String question);
