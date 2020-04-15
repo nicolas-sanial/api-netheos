@@ -22,7 +22,7 @@ public class FaqController {
     FaqService faqService;
 
     /**
-     * US 2 : This controller is used to get all FAQ entities -> question/answers
+     * US 2 : This controller allows you to get all FAQ entities -> question/answers
      * @return All defined FAQ in DB
      */
     @GetMapping(value = "/faq", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,6 +30,12 @@ public class FaqController {
         return faqService.findAllFaq();
     }
 
+    /**
+     * US 3 : This controller allows you to return all answers with the sent string contained in question/answer.
+     * @param toCompare Ths string used to search all answers
+     * @param errors The param containing all usage API errors
+     * @return All the answers corresponding with the demand
+     */
     @PostMapping(value = "/faq/search", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getAllFaqContainsParam(@Valid @RequestBody SearchForm toCompare, Errors errors){
 
@@ -38,7 +44,7 @@ public class FaqController {
             String message = errors.getAllErrors()
                     .stream()
                     .map(x -> x.getDefaultMessage())
-                    .collect(Collectors.joining(","));
+                    .collect(Collectors.joining(", "));
             return ResponseEntity.badRequest().body(new ErrorPayload(message));
         }
         return ResponseEntity.ok(faqService.findAllLikeQuestionOrAnswer(toCompare.getToCompare()));

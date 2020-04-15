@@ -1,5 +1,7 @@
 package sanial.netheos.demoapi.core.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sanial.netheos.demoapi.api.dto.FaqTagCreation;
@@ -18,6 +20,9 @@ import java.util.List;
 @Service
 public class FaqTagServiceImpl implements FaqTagService {
 
+    //The constant Logger
+    private static final Logger LOG = LoggerFactory.getLogger(FaqTagServiceImpl.class);
+
     @Autowired
     FaqTagRepository faqTagRepository;
 
@@ -32,16 +37,14 @@ public class FaqTagServiceImpl implements FaqTagService {
         return faqTagRepository.findAll();
     }
 
+    /**
+     * comment -> FaqTagService
+     */
+    @Override
     public void createFaqTag(FaqTagCreation faqTag) {
-        List<FaqTag> tagListToSave = new ArrayList<>();
-        Faq faq;
 
-        //Basic verification, we don't want empty values (I prefer StringUtils.isNotBlank() but org.apache.commons.lang seems deprecated with gradle ??)
-        if(!faqTag.getQuestion().equals("") && !faqTag.getAnswer().equals("")){
-            faq = new Faq(faqTag.getQuestion(), faqTag.getAnswer());
-        }else{
-            throw new ApiException("In order to create a new Faq, question or response not have to be empty.");
-        }
+        List<FaqTag> tagListToSave = new ArrayList<>();
+        Faq faq = new Faq(faqTag.getQuestion(), faqTag.getAnswer());
 
         //If question or answer of FAQ not existing, foreach tag, we check if exist, if not we save it.
         if(!faqRepository.findByQuestion(faqTag.getQuestion()).isPresent() || !faqRepository.findByAnswer(faqTag.getAnswer()).isPresent()){
@@ -57,9 +60,8 @@ public class FaqTagServiceImpl implements FaqTagService {
                     }
                 });
                 faqTagRepository.saveAll(tagListToSave);
+                LOG.info("A new Faq as been create.");
             }
-            //Then we save the FAQ, happen only if the method as been well executed
-
         //If question or answer of FAQ is already existing, we throw an exception.
         }else{
             //Here is a point of view. We can send exception, or don't create any FAQ, take the corresponding FAQ with FaqRepository and just set tag on it.

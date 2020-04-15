@@ -27,6 +27,12 @@ public class FaqTagController {
         return faqTagService.findAllFaqTag();
     }
 
+    /**
+     * US 1 : This controller allows you to create new faqs and their associated tags.
+     * @param faqTag The payload sent containing all informations for creation
+     * @param errors The param containing all usage API errors
+     * @return the result of the creation, ok or errors.
+     */
     @PostMapping(value = "/faqtag/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> FaqTagcreateOrUpdate(@Valid @RequestBody FaqTagCreation faqTag, Errors errors) {
 
@@ -35,7 +41,7 @@ public class FaqTagController {
             String message = errors.getAllErrors()
                     .stream()
                     .map(x -> x.getDefaultMessage())
-                    .collect(Collectors.joining(","));
+                    .collect(Collectors.joining(", "));
             return ResponseEntity.badRequest().body(new ErrorPayload(message));
         }
 

@@ -17,6 +17,10 @@ public class TagController {
     @Autowired
     TagService tagService;
 
+    /**
+     *
+     * @return all the tags
+     */
     @GetMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Tag> getAllTag(){
         return tagService.findAllTag();

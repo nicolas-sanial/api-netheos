@@ -11,6 +11,10 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
+
+/**
+ * This class allow using basic security implemented from SpringSecurity
+ */
 @Configuration
 public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -23,7 +27,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
+        //Add roles usage in memory
         auth.inMemoryAuthentication()
                 .withUser(env.getProperty("api.user.login")).password(encoder.encode(env.getProperty("api.user.password"))).roles(ROLE_USER)
                 .and()
@@ -35,6 +39,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
         entryPoint.setRealmName("Demo API Netheos");
 
+        //Add restriction roles on specific API
         http.csrf().disable().antMatcher("/api/**").authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/api/faqtag/create").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.POST,"/api/faq/search").hasRole(ROLE_USER)

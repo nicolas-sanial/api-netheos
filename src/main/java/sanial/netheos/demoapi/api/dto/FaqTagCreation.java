@@ -8,11 +8,11 @@ import java.util.List;
 public class FaqTagCreation {
 
     @JsonProperty("QUESTION")
-    @NotBlank(message = "The question of FAQ is mandatory here")
+    @NotBlank(message = "The question of question is mandatory here")
     String question;
 
     @JsonProperty("ANSWER")
-    @NotBlank(message = "The answer of FAQ is mandatory here")
+    @NotBlank(message = "The answer of answer is mandatory here")
     String answer;
 
     @JsonProperty("TAG_NAME")
