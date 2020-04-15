@@ -2,12 +2,12 @@ package sanial.netheos.demoapi.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 public class SearchForm {
 
     @JsonProperty("TOCOMPARE")
-    @NotNull(message = "The value that you search is mandatory here.")
+    @NotBlank(message = "The value that you search is mandatory here.")
     String toCompare;
 
     public String getToCompare() {

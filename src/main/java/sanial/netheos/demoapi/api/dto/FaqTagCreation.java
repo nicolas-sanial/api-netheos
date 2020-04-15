@@ -2,17 +2,17 @@ package sanial.netheos.demoapi.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 public class FaqTagCreation {
 
     @JsonProperty("QUESTION")
-    @NotNull(message = "The question of FAQ is mandatory here.")
+    @NotBlank(message = "The question of FAQ is mandatory here")
     String question;
 
     @JsonProperty("ANSWER")
-    @NotNull(message = "The answer of FAQ is mandatory here.")
+    @NotBlank(message = "The answer of FAQ is mandatory here")
     String answer;
 
     @JsonProperty("TAG_NAME")

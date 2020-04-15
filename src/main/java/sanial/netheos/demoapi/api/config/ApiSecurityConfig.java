@@ -39,6 +39,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/faqtag/create").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.POST,"/api/faq/search").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.GET,"/api/faq").hasRole(ROLE_ADMIN)
+                .anyRequest().authenticated()
                 .and().httpBasic().authenticationEntryPoint(entryPoint);
     }
 }
