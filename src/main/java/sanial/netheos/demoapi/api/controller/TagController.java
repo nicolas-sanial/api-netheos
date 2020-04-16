@@ -18,7 +18,7 @@ public class TagController {
     TagService tagService;
 
     /**
-     *
+     * Not used during the demo, only used for test
      * @return all the tags
      */
     @GetMapping(value = "/tag", produces = MediaType.APPLICATION_JSON_VALUE)

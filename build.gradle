@@ -11,6 +11,7 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -19,9 +20,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api'
+	testImplementation 'com.h2database:h2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 

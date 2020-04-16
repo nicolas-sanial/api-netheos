@@ -13,5 +13,5 @@ public interface FaqTagService {
      * Implement this to write creation method for FaqTag Entities.
      * @param faqTag
      */
-    void createFaqTag(FaqTagCreation faqTag);
+    List<FaqTag> createFaqTag(FaqTagCreation faqTag);
 }

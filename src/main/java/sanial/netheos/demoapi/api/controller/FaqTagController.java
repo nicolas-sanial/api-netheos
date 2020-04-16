@@ -34,7 +34,7 @@ public class FaqTagController {
      * @return the result of the creation, ok or errors.
      */
     @PostMapping(value = "/faqtag/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> FaqTagcreateOrUpdate(@Valid @RequestBody FaqTagCreation faqTag, Errors errors) {
+    public ResponseEntity<Object> FaqTagCreateOrUpdate(@Valid @RequestBody FaqTagCreation faqTag, Errors errors) {
 
         if (errors.hasErrors()) {
             // get all errors

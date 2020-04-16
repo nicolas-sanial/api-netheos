@@ -41,7 +41,7 @@ public class FaqTagServiceImpl implements FaqTagService {
      * comment -> FaqTagService
      */
     @Override
-    public void createFaqTag(FaqTagCreation faqTag) {
+    public List<FaqTag> createFaqTag(FaqTagCreation faqTag) {
 
         List<FaqTag> tagListToSave = new ArrayList<>();
         Faq faq = new Faq(faqTag.getQuestion(), faqTag.getAnswer());
@@ -59,9 +59,9 @@ public class FaqTagServiceImpl implements FaqTagService {
                         tagListToSave.add(new FaqTag(faq, tagRepository.findByName(tagName).get()));
                     }
                 });
-                faqTagRepository.saveAll(tagListToSave);
-                LOG.info("A new Faq as been create.");
             }
+            LOG.info("A new Faq as been create.");
+            return faqTagRepository.saveAll(tagListToSave);
         //If question or answer of FAQ is already existing, we throw an exception.
         }else{
             //Here is a point of view. We can send exception, or don't create any FAQ, take the corresponding FAQ with FaqRepository and just set tag on it.

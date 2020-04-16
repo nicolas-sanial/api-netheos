@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sanial.netheos.demoapi.core.exception.ApiException;
 import sanial.netheos.demoapi.core.model.Faq;
 import sanial.netheos.demoapi.core.repository.FaqRepository;
 import sanial.netheos.demoapi.core.service.FaqService;
@@ -33,11 +34,15 @@ public class FaqServiceImpl implements FaqService {
     @Override
     public List<String> findAllLikeQuestionOrAnswer(String toCompare){
         List<String> answerList = new ArrayList<>();
-        List<Faq> listFaq = faqRepository.findAllLikeQuestionOrAnswer(toCompare);
-        listFaq.forEach(faq -> {
-            answerList.add(faq.getAnswer());
-        });
-        LOG.info("All answers returned with the string : {}", toCompare);
-        return answerList;
+        if(toCompare != null && !toCompare.isEmpty()) {
+            List<Faq> listFaq = faqRepository.findAllLikeQuestionOrAnswer(toCompare);
+            listFaq.forEach(faq -> {
+                answerList.add(faq.getAnswer());
+            });
+            LOG.info("All answers returned with the string : {}", toCompare);
+            return answerList;
+        }else{
+            throw new ApiException("In order to find any answer, you have to specify the searched param");
+        }
     }
 }
