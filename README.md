@@ -11,23 +11,23 @@ Gradle v6.3 / Java v8 / MySQL 5.7.21
 
 To create this API, I used :
 
-##### Framework SpringBoot latest version
+### Framework SpringBoot (latest version)
 
 To abstract all spring classic configuration and work with dependency injection.
 
-##### Hibernate JPA latest version
+### Hibernate JPA (latest version)
 
 ORM witch is simple to use and allow creating custom secure query to interact with DB.
 
-##### Spring Security 
+### Spring Security (latest version)
 
 I used spring security to manage the security layer. I make the choice to use Basic Auth to secure API. This is not the best way to secure an API. I tried to implement OAuth2, but I never try to implement it before. This could take me more time to do.
 
-##### Junit Jupiter latest version and Mockito latest version
+### Junit Jupiter latest version and Mockito (latest version)
 
 Allowing to create all unit test for every type of repository/service/controller. Some unit test are ignored because with ``gradle build`` they are not passing with H2 config. I don't know why because when I run them with IntelliJ, they pass (Option : Run test using Gradle (Default)). 
 
-##### H2 database latest version
+### H2 database (latest version)
 
 To simulate a fake database, make me able to execute unit test in other env than real DB.
 
@@ -44,13 +44,13 @@ Clone the project on "master" branch :
 
 There are two ways to test the project, using directly intelliJ or deploy the war in a tomcat server.
 
-##### First way, use directly IntelliJ :
+#### First way, use directly IntelliJ :
 
 - With IntelliJ, run the project with gradle option of  ``demoapi -> Tasks -> application -> bootRun``. This will generate the DB structure.
 
 - Open postman and import the file ``demoapi/postman/DEMOAPI.postman_collection.json``. Now you can use the imported request to directly test the different API.
 
-##### Second way, deploy in tomcat (v9+) :
+#### Second way, deploy in tomcat (v9+) :
 
 - Go to project folder and run ``gradle build`` then put the generated war ``demoapi/build/libs/demoapi-"version".war`` in the webapps tomcat folder.
 

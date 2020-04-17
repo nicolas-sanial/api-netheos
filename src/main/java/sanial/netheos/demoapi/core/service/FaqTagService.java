@@ -9,9 +9,5 @@ public interface FaqTagService {
 
     List<FaqTag> findAllFaqTag();
 
-    /**
-     * Implement this to write creation method for FaqTag Entities.
-     * @param faqTag
-     */
     List<FaqTag> createFaqTag(FaqTagCreation faqTag);
 }

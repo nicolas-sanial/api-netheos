@@ -38,7 +38,9 @@ public class FaqTagServiceImpl implements FaqTagService {
     }
 
     /**
-     * comment -> FaqTagService
+     * Creation of Faq, Tags and there association
+     * @param faqTag
+     * @return
      */
     @Override
     public List<FaqTag> createFaqTag(FaqTagCreation faqTag) {

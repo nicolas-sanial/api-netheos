@@ -39,7 +39,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
         entryPoint.setRealmName("Demo API Netheos");
 
-        //Add restriction roles on specific API
+        //Add restriction roles on specific URL
         http.csrf().disable().antMatcher("/api/**").authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/api/faqtag/create").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.POST,"/api/faq/search").hasRole(ROLE_USER)

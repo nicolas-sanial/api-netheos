@@ -27,9 +27,9 @@ public class FaqServiceImpl implements FaqService {
     }
 
     /**
-     * This method use repo to get all
-     * @param toCompare
-     * @return
+     * Search all Faq with a specific string and return all answers
+     * @param toCompare The string that have to be contained in question or answer attribute
+     * @return all the answers of found Faq
      */
     @Override
     public List<String> findAllLikeQuestionOrAnswer(String toCompare){
